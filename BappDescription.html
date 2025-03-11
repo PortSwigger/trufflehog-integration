@@ -1,0 +1,39 @@
+<p>Scan Burp Suite traffic for 800+ different types of secrets (API keys, passwords, SSH keys, etc) using TruffleHog!</p>
+
+<h2>How it works</h2>
+
+<p>Every 10 seconds the extension runs TruffleHog to check for secrets in Burp Suite traffic.</p>
+
+<ol>
+	<li>The extension writes all HTTP traffic (from the configured Burp Suite tools - proxy, repeater, intruder, etc.) to disk in a temp directory.</li>
+	<li>Every 10 seconds, the extension invokes TruffleHog to scan the files in that temp directory and then immediately deletes them.</li>
+	<li>If secrets are found, they're reported in the "TruffleHog "tab. When you click into a detected secret, the "Location URLs" table will populate all endpoints containing that exact secret. When you click on a specific URL, you'll see the secret details, as well as the actual request or response containing that secret.</li>
+</ol>
+
+<p><b>Note:</b> If we can't automatically find the TruffleHog binary in your PATH, you'll need to specify the path to TruffleHog in the TruffleHog Burp Suite tab.</p>
+
+<h3>Secrets results</h3>
+
+<p>If "Verify Secrets" is enabled (default), the TruffleHog tab will only show secrets that are currently live.</p>
+
+<h3>Scanning interval</h3>
+
+<p>Because we're scanning in 10 second intervals, there may be a lag of up to 15 seconds between loading a page containing a secret and seeing it displayed in the TruffleHog tab.</p>
+
+<h3>Keyword Preflighting</h3>
+
+<p>We separate the request/response headers from the request/response body content for analysis. We do this to add additional keyword context to the headers, which helps maximize the amount of secrets the extension can find.</p>
+
+<h2>Additional configuration</h2>
+
+<p>Click on the TruffleHog tab to see available configuration options. When configuration changes are made,canges will take effect immediately.</p>
+
+<h3>Burp Suite</h3>
+
+<p>By default, only "Proxy" traffic will be scanned. Configure analyzed traffic in the TruffleHog tab.</p>
+
+<h3>TruffleHog</h3>
+
+<p><b>Secret Verification is Enabled by default.</b> This means that the extension will attempt to verify each secret that it finds via an HTTP request. You can turn this off by de-selecting the "Verify Secrets" checkbox.</p>
+
+<p><b>Overlapping Secret Verification is Disabled by default.</b> This means that the extension will not allow overlapping secret checks. You can turn this on by selecting the "Allow Overlapping Verification" checkbox.</p>

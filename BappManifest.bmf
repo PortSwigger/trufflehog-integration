@@ -1,0 +1,13 @@
+Uuid: 514b964549874209b3a4f70ec54e915d
+ExtensionType: 2
+Name: TruffleHog Integration
+RepoName: trufflehog-integration
+ScreenVersion: 1.0.0
+SerialVersion: 1
+MinPlatformVersion: 0
+ProOnly: True
+Author: Truffle Security
+ShortDescription: Integrate with TruffleHog to scan Burp traffic.
+EntryPoint: trufflehog.py
+BuildCommand: 
+SupportedProducts: Pro
